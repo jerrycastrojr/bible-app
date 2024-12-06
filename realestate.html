@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>realestateapp</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Real Estate App</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background: linear-gradient(120deg, #84fab0, #8fd3f4);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background: rgba(0, 123, 255, 0.9);
+            color: white;
+            padding: 20px 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        nav {
+            background: #fff;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #007BFF;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #0056b3;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        .section {
+            margin: 20px 0;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 25px;
+            overflow: hidden;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dashboard {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+        }
+
+        .card {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+          .card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+            background: linear-gradient(120deg, #007BFF, #00C6FF);
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h3 {
+            margin: 10px 0;
+            font-size: 1.8em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: rgba(0, 123, 255, 0.9);
+            color: white;
+            position: relative;
+            bottom: 0;
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background: rgba(0, 0, 0, 0.6);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 60%;
+            text-align: left;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+        }
+
+        .modal-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .modal-content ul li {
+            margin: 10px 0;
+        }
+
+        .modal-content ul li a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+
+        .modal-content ul li a:hover {
+            color: #0056b3;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            right: 15px;
+            top: 10px;
+        }
+
+        .close:hover {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Fiatlux @ Realty</h1>
+    </header>
+
+    <nav>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#transactions">Transactions</a>
+        <a href="#support">Support</a>
+        <a href="#faq">FAQ</a>
+    </nav>
+
+    <div class="container">
+        <!-- Dashboard Section -->
+        <div class="section" id="dashboard">
+            <h2>Dashboard</h2>
+            <div class="dashboard">
+                <!-- Property Registration Card -->
+                <div class="card" onclick="openModal('modalRegistration')">
+                    <h3>Property Registration</h3>
+                    <p>Manage your property titles and ownership.</p>
+                </div>
+
+                <!-- Tax Payments Card -->
+                <div class="card" onclick="openModal('modalTax')">
+                    <h3>Tax Payments</h3>
+                    <p>Pay property taxes and view payment history.</p>
+                </div>
+
+                <!-- Document Requests Card -->
+                <div class="card" onclick="openModal('modalDocuments')">
+                    <h3>Document Requests</h3>
+                    <p>Request deeds, titles, and other documents.</p>
+                </div>
+
+                <!-- Property Assessment Card -->
+                <div class="card" onclick="openModal('modalAssessment')">
+                    <h3>Assessment Office</h3>
+                    <p>Access property valuation and assessments.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transactions Section -->
+       <!-- Transactions Section -->
+<div class="section" id="transactions">
+    <h2>Transactions</h2>
+    <p>Track and manage your real estate transactions, payments, and agreements in one place.</p>
+    <ul>
+        <li><a href="https://example.com/payment1" target="_blank">Make Payment</a></li>
+        <li><a href="https://example.com/contract1" target="_blank">View Agreement</a></li>
+        <li><a href="https://example.com/transactionHistory" target="_blank">Transaction History</a></li>
+    </ul>
+</div>
+
+
+        <!-- Support Section -->
+       <!-- Support Section -->
+<div class="section" id="support">
+    <h2>Support</h2>
+    <p>Need help? Contact our support team via chat, email, or phone. We're here to assist you!</p>
+    <h3>Contact Form</h3>
+    <form id="supportForm">
+        <label for="userName">Your Name:</label><br>
+        <input type="text" id="userName" name="userName" required><br><br>
+
+        <label for="userEmail">Your Email:</label><br>
+        <input type="email" id="userEmail" name="userEmail" required><br><br>
+
+        <label for="userMessage">Your Message:</label><br>
+        <textarea id="userMessage" name="userMessage" rows="4" required></textarea><br><br>
+
+        <input type="submit" value="Send Message">
+    </form>
+</div>
+
+
+        <!-- FAQ Section -->
+        <div class="section" id="faq">
+            <h2>FAQ</h2>
+            <p>Find answers to common questions about our app and its features:</p>
+            <ul>
+                <li><strong>How do I register a property?</strong> Use the Property Registration section in the dashboard.</li>
+                <li><strong>How can I pay my property taxes?</strong> Visit the Tax Payments section in the dashboard.</li>
+                <li><strong>Where can I request official documents?</strong> Go to the Document Requests section in the dashboard.</li>
+                <li><strong>Who do I contact for support?</strong> Visit the Support section to find our contact information.</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 One-Stop Real Estate App</p>
+    </footer>
+
+    <!-- Modal for Property Registration -->
+    <div id="modalRegistration" class="modal">
+    <div class="modal-content"> <!-- This line has an extra space -->
+        <span class="close" onclick="closeModal('modalRegistration')">&times;</span>
+        <h2>Property Registration Offices</h2>
+        <ul>
+            <li><a href="https://example.com/office1" target="_blank">Office of Land Registration</a></li>
+            <li><a href="https://example.com/office2" target="_blank">Municipal Real Estate Registry</a></li>
+        </ul>
+    </div>
+</div>
+
+
+    <!-- Modal for Tax Payments -->
+    <div id="modalTax" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modalTax')">&times;</span>
+            <h2>Tax Payment Offices</h2>
+            <ul>
+                <li><a href="https://example.com/tax1" target="_blank">City Tax Office</a></li>
+                <li><a href="https://example.com/tax2" target="_blank">National Tax Authority</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Modal for Document Requests -->
+    <div id="modalDocuments" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modalDocuments')">&times;</span>
+            <h2>Document Request Offices</h2>
+            <ul>
+                <li><a href="https://example.com/doc1" target="_blank">City Records Office</a></li>
+                <li><a href="https://example.com/doc2" target="_blank">National Documentation Center</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Modal for Property Assessment -->
+    <div id="modalAssessment" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modalAssessment')">&times;</span>
+            <h2>Property Assessment Offices</h2>
+            <ul>
+                <li><a href="https://example.com/assessment1" target="_blank">Local Assessment Office</a></li>
+                <li><a href="https://example.com/assessment2" target="_blank">National Appraisal Center</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Open Modal Function
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        // Close Modal Function
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close modal when clicking outside the modal content
+        window.onclick = function(event) {
+            const modals = document.getElementsByClassName('modal');
+            for (let i = 0; i < modals.length; i++) {
+                if (event.target === modals[i]) {
+                    modals[i].style.display = 'none';
+                }
+            }
+        };
+    </script>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
